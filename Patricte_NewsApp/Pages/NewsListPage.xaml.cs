@@ -30,5 +30,15 @@ public partial class NewsListPage : ContentPage
     private void CVNews_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
+        var selectedArticle = e.CurrentSelection.FirstOrDefault() as Article;
+        if (selectedArticle == null) return;
+#if WINDOWS
+        // Force WinUI to clear the selected container
+        if (CVNews.Handler?.PlatformView is Microsoft.UI.Xaml.Controls.ListViewBase lv)
+            lv.SelectedIndex = -1;
+#endif
+
+        Navigation.PushAsync(new NewsDetailsPage(selectedArticle));
+        ((CollectionView)sender).SelectedItem = null;
     }
 }
