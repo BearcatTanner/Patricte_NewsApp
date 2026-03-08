@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Patricte_NewsApp.Pages.NewsListPage"
+             Title="NewsListPage">
+    <Grid RowDefinitions="auto, *"
+       >
+        <Label Grid.Row="0"
+            x:Name="LblTitle"
+            Text= ""
+            FontSize="Title"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            Padding="20"/>
+
+        <CollectionView Grid.Row="2" Margin="5" x:Name="CVNews"
+                        SelectionChanged="CVNews_SelectionChanged">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="5" Margin="5">
+                        <VerticalStackLayout Padding="10" Spacing="0"
+                                          VerticalOptions="Center">
+                            <Image Source="{Binding Image}"/>
+                            <Label Text="{Binding Title}"/>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
+</ContentPage>
